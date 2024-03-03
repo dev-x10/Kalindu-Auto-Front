@@ -37,6 +37,5 @@
   "lint-staged": {
     "app/**/*.{js,tsx,ts,html,css}": "prettier --write",
     "components/**/*.{js,tsx,ts,html,css}": "prettier --write"
-   
   }
 }
