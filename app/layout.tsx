@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Open_Sans } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
-
+const inter = Open_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Kalindu - Auto",
@@ -12,8 +11,6 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
   // viewport:
   //   "minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover",
-
-  
 };
 
 export default function RootLayout({
@@ -23,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className + "font-fa"}>{children}</body>
     </html>
   );
 }
