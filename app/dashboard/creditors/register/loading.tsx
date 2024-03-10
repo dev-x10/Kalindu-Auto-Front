@@ -1,57 +1,55 @@
-import React from "react";
-import { cn } from "@/lib/utils";
+import { Skeleton } from "@/components/ui/skeleton";
 
-interface SkeletonInputProps {
-  className?: string;
-}
-
-const SkeletonInput = ({ className, ...props }: SkeletonInputProps) => {
+export default function Loading() {
   return (
-    <div
-      className={cn("animate-pulse bg-slate-200 h-10 rounded-md", className)}
-      {...props}
-    />
-  );
-};
-
-export default function RegisterFormSkeleton() {
-  return (
-    <div className="space-y-8">
+    <div className="space-y-6">
+      <div>
+        <Skeleton className="h-6 w-64" />
+        <Skeleton className="h-4 w-40 mt-2" />
+      </div>
+      <div className="h-px bg-slate-700" />
       <div className="flex flex-row w-full gap-10 flex-wrap">
-        <div>
-          <div className="mb-2 h-6 rounded bg-slate-200 w-24 animate-pulse" />
-          <SkeletonInput className="w-96" />
+        <div className="w-1/3">
+          <Skeleton className="h-4 w-24" />
+          <Skeleton className="h-10 w-96 mt-2" />
+          <Skeleton className="h-3 w-24 mt-1" />
         </div>
-        <div>
-          <div className="mb-2 h-6 rounded bg-slate-200 w-48 animate-pulse" />
-          <SkeletonInput className="w-96" />
+        <div className="w-1/3">
+          <Skeleton className="h-4 w-40" />
+          <Skeleton className="h-10 w-96 mt-2" />
+          <Skeleton className="h-3 w-24 mt-1" />
         </div>
-        <div>
-          <div className="mb-2 h-6 rounded bg-slate-200 w-28 animate-pulse" />
-          <SkeletonInput className="w-96" />
+        <div className="w-1/3">
+          <Skeleton className="h-4 w-32" />
+          <Skeleton className="h-10 w-96 mt-2" />
+          <Skeleton className="h-3 w-24 mt-1" />
         </div>
-        <div>
-          <div className="mb-2 h-6 rounded bg-slate-200 w-36 animate-pulse" />
-          <SkeletonInput className="w-96" />
+        <div className="w-1/3">
+          <Skeleton className="h-4 w-40" />
+          <Skeleton className="h-10 w-96 mt-2" />
+          <Skeleton className="h-3 w-24 mt-1" />
         </div>
-        <div>
-          <div className="mb-2 h-6 rounded bg-slate-200 w-56 animate-pulse" />
-          <SkeletonInput className="w-96" />
+        <div className="w-1/3">
+          <Skeleton className="h-4 w-56" />
+          <Skeleton className="h-10 w-96 mt-2" />
+          <Skeleton className="h-3 w-24 mt-1" />
         </div>
-        <div>
-          <div className="mb-2 h-6 rounded bg-slate-200 w-28 animate-pulse" />
-          <SkeletonInput className="w-96" />
-          <div className="mt-2 h-4 rounded bg-slate-200 w-96 animate-pulse" />
+        <div className="w-1/3">
+          <Skeleton className="h-4 w-32" />
+          <Skeleton className="h-10 w-96 mt-2" />
+          <Skeleton className="h-3 w-48 mt-1" />
+          <Skeleton className="h-3 w-48 mt-2" />
         </div>
-        <div>
-          <div className="mb-2 h-6 rounded bg-slate-200 w-48 animate-pulse" />
-          <SkeletonInput className="w-96" />
-          <div className="mt-2 h-4 rounded bg-slate-200 w-96 animate-pulse" />
+        <div className="w-1/3">
+          <Skeleton className="h-4 w-56" />
+          <Skeleton className="h-10 w-96 mt-2" />
+          <Skeleton className="h-3 w-48 mt-1" />
+          <Skeleton className="h-3 w-48 mt-2" />
         </div>
       </div>
       <div className="flex gap-4">
-        <div className="h-10 bg-slate-200 rounded-md w-40 animate-pulse" />
-        <div className="h-10 bg-slate-200 rounded-md w-40 animate-pulse" />
+        <Skeleton className="h-10 w-40" />
+        <Skeleton className="h-10 w-40" />
       </div>
     </div>
   );
