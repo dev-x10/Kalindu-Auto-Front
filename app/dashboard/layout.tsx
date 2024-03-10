@@ -7,11 +7,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <div className="w-full h-12 bg-gray-900 border-b-2 border-slate-200">
         <Navbar />
       </div>
-      <div className="flex flex-row h-full">
+      <div className="flex flex-row h-full w-full">
         <div className="w-64 h-full bg-slate-100">
           <Sidebar />
         </div>
-        <div className="p-6">{children}</div>
+        <div className="p-6 w-full">{children}</div>
       </div>
     </div>
   );

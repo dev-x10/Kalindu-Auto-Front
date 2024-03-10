@@ -1,8 +1,11 @@
+"use client";
 import React from "react";
 import Link from "next/link";
 import NavLinks from "./navlinks";
+import { usePathname } from "next/navigation";
 
 function Sidebar() {
+  const pathname = usePathname();
   return (
     <div className="h-full pr-2 pl-2">
       <ul className="mt-5">
@@ -16,7 +19,13 @@ function Sidebar() {
                 {link.sublinks.map((sublink) => (
                   <li key={sublink.label}>
                     <Link href={sublink.href}>
-                      <p className="font-regular text-sm hover:bg-gray-200 p-1 focus:bg-violet-700 rounded-md flex items-center gap-1">
+                      <p
+                        className={`font-regular text-sm ${
+                          pathname === sublink.href
+                            ? " bg-slate-300 p-1"
+                            : "hover:bg-slate-200 p-1"
+                        } rounded-md flex items-center gap-1`}
+                      >
                         {sublink.icon}
                         {sublink.label}
                       </p>

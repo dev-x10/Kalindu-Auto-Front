@@ -1,4 +1,3 @@
-import { LiaFileInvoiceSolid } from "react-icons/lia";
 import { BsCashCoin } from "react-icons/bs";
 import { AiOutlineCreditCard } from "react-icons/ai";
 import { MdOutlineInsertPageBreak } from "react-icons/md";
