@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Open_Sans } from "next/font/google";
 import "./globals.css";
+import Provider from "@/utils/Providers";
 
 const inter = Open_Sans({ subsets: ["latin"] });
 
@@ -20,7 +21,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className + "font-fa"}>{children}</body>
+      <body className={inter.className + "font-fa"}>
+        <Provider>{children}</Provider>
+      </body>
     </html>
   );
 }
