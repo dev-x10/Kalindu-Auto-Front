@@ -1,10 +1,10 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
-
+import { accountFormSchema } from "./(helpers)/formSchema";
 import {
   Form,
   FormControl,
@@ -16,52 +16,13 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
-
-const accountFormSchema = z.object({
-  shopName: z
-    .string({ required_error: "Name is Required" })
-    .min(2, {
-      message: "Name must be at least 2 characters.",
-    })
-    .max(30, {
-      message: "Name must not be longer than 30 characters.",
-    }),
-  contactPersonName: z
-    .string({ required_error: "Contact person name is Required" })
-    .min(2, {
-      message: "Name must be at least 2 characters.",
-    })
-    .max(30, {
-      message: "Name must not be longer than 30 characters.",
-    }),
-  emailAddress: z.string({ required_error: "Email is Required" }).email({
-    message: "Please enter a valid email",
-  }),
-  primaryContactNo: z
-    .number({
-      required_error: "Primary Contact is Required",
-      invalid_type_error: "Primary Contact must be a number",
-    })
-    .min(1000000000, {
-      message: "Phone number must be 10 digits", // Descriptive error message
-    })
-    .max(9999999999, { message: "Phone number must be 10 digits" }) // Descriptive error message
-    .refine((val) => val.toString().length === 10, {
-      message: "Phone number must be 10 digits",
-    }),
-  secondaryContactNo: z
-    .number({
-      required_error: "Phone is Required",
-      invalid_type_error: "Secondary Contact must be a number",
-    }) // Type checking error: secondaryContactNo is optional
-    .min(1000000000, {
-      message: "Phone number must be 10 digits",
-    })
-    .max(9999999999, { message: "Phone number must be 10 digits" })
-    .optional(),
-  creditLimit: z.number().optional(),
-  maxCreditDuePeriod: z.number().optional(),
-});
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 type AccountFormValues = z.infer<typeof accountFormSchema>;
 
@@ -91,15 +52,15 @@ export function RegisterForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <div className="flex flex-row w-full gap-10 flex-wrap">
+        <div className="grid grid-cols-2 grid-rows-4 w-1/2 gap-x-7 gap-y-0">
           <FormField
             control={form.control}
             name="shopName"
             render={({ field }) => (
-              <FormItem className="w-1/3">
+              <FormItem className="w-full col-span-1 row-span-1">
                 <FormLabel>Name</FormLabel>
                 <FormControl>
-                  <Input placeholder="Name" {...field} className="w-96" />
+                  <Input placeholder="Name" {...field} className="w-full" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -109,12 +70,12 @@ export function RegisterForm() {
             control={form.control}
             name="contactPersonName"
             render={({ field }) => (
-              <FormItem className="w-1/3">
+              <FormItem className="w-full col-span-1 row-span-1">
                 <FormLabel>Contact Person Name</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="Contact person name"
-                    className="w-96"
+                    className="w-full"
                     {...field}
                   />
                 </FormControl>
@@ -127,12 +88,12 @@ export function RegisterForm() {
             control={form.control}
             name="emailAddress"
             render={({ field }) => (
-              <FormItem className="w-1/3">
+              <FormItem className="w-full col-span-1 row-span-1">
                 <FormLabel>Email Address</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="Email address"
-                    className="w-96"
+                    className="w-full"
                     type="email"
                     {...field}
                   />
@@ -146,13 +107,13 @@ export function RegisterForm() {
             control={form.control}
             name="primaryContactNo"
             render={({ field }) => (
-              <FormItem className="w-1/3">
+              <FormItem className="w-full col-span-1 row-span-1">
                 <FormLabel>Primary Contact No </FormLabel>
                 <FormControl>
                   <Input
                     placeholder="Primary contact"
-                    className="w-96"
-                    type="number"
+                    className="w-full"
+                    type="text"
                     {...field}
                   />
                 </FormControl>
@@ -165,13 +126,13 @@ export function RegisterForm() {
             control={form.control}
             name="secondaryContactNo"
             render={({ field }) => (
-              <FormItem className="w-1/3">
-                <FormLabel>Secondary Contact No (optional) </FormLabel>
+              <FormItem className="w-full col-span-1 row-span-1">
+                <FormLabel>Secondary Contact No </FormLabel>
                 <FormControl>
                   <Input
                     placeholder="Secondary contact"
-                    className="w-96"
-                    type="number"
+                    className="w-full"
+                    type="text"
                     {...field}
                   />
                 </FormControl>
@@ -184,12 +145,12 @@ export function RegisterForm() {
             control={form.control}
             name="creditLimit"
             render={({ field }) => (
-              <FormItem className="w-1/3">
-                <FormLabel>Credit Limit (optional)</FormLabel>
+              <FormItem className="w-full col-span-1 row-span-1">
+                <FormLabel>Credit Limit </FormLabel>
                 <FormControl>
                   <Input
                     placeholder="Credit limit"
-                    className="w-96"
+                    className="w-full"
                     {...field}
                   />
                 </FormControl>
@@ -204,13 +165,27 @@ export function RegisterForm() {
             control={form.control}
             name="maxCreditDuePeriod"
             render={({ field }) => (
-              <FormItem className="w-1/3">
-                <FormLabel>Max credit due period (optional)</FormLabel>
+              <FormItem className="w-full col-span-1 row-span-1">
+                <FormLabel>Max credit due period </FormLabel>
                 <FormControl>
-                  <Input
-                    placeholder="Max credit period"
-                    className="w-96"
-                    {...field}
+                  <Controller
+                    name="maxCreditDuePeriod"
+                    control={form.control}
+                    render={({ field }) => (
+                      <Select
+                        onValueChange={field.onChange}
+                        value={field.value}
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Theme" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="30">30 days</SelectItem>
+                          <SelectItem value="60">60 days</SelectItem>
+                          <SelectItem value="90">90 days</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    )}
                   />
                 </FormControl>
                 <FormDescription>

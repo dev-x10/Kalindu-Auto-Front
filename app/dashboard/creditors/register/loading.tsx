@@ -1,3 +1,4 @@
+"use client";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export default function Loading() {
@@ -7,7 +8,6 @@ export default function Loading() {
         <Skeleton className="h-6 w-64" />
         <Skeleton className="h-4 w-40 mt-2" />
       </div>
-      <div className="h-px bg-slate-700" />
       <div className="flex flex-row w-full gap-10 flex-wrap">
         <div className="w-1/3">
           <Skeleton className="h-4 w-24" />

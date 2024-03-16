@@ -3,7 +3,7 @@ import { Inter, Open_Sans } from "next/font/google";
 import "./globals.css";
 import Provider from "@/utils/Providers";
 
-const inter = Open_Sans({ subsets: ["latin"] });
+const inter = Open_Sans({ subsets: ["latin"], fallback: ["system-ui"] });
 
 export const metadata: Metadata = {
   title: "Kalindu - Auto",
@@ -21,7 +21,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <Provider>
+        <body className={inter.className}>{children}</body>
+      </Provider>
     </html>
   );
 }
